@@ -1,8 +1,11 @@
 {
-  "name": "backend",
+  "name": "online-cinema-backend",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Online cinema application",
+  "author": {
+    "email": "salman.khimishev@mail.ru",
+    "name": "Salman Khimishev"
+  },
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

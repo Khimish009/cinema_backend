@@ -5,9 +5,12 @@ import { UserModel } from '../user/user.model'
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel(UserModel) private readonly UserModel: ModelType<UserModel>) {}
+  constructor(
+    @InjectModel(UserModel) private readonly UserModel: ModelType<UserModel>
+  ) {}
 
   async register(dto: any) {
-    return this.
+    const newUser = new this.UserModel(dto)
+    return newUser.save()
   }
 }

@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
 import { ModelType } from '@typegoose/typegoose/lib/types'
 import { InjectModel } from 'nestjs-typegoose'
+import { hash, genSalt, compare } from 'bcryptjs'
 import { UserModel } from '../user/user.model'
 import { AuthDto } from './dto/auth.dto'
 
@@ -18,7 +19,12 @@ export class AuthService {
       )
     }
 
-    const newUser = new this.UserModel(dto)
+    const salt = await genSalt(10)
+
+    const newUser = new this.UserModel({
+      email: dto.email,
+      password: await hash(dto.password, salt),
+    })
     return newUser.save()
   }
 }
